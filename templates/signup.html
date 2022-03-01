@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up!</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+
+</head>
+<body>
+    <form class="loginForm" action="{{ url_for('auth.signup') }}" method="post">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class=error_flash>
+                    {{ messages[0] }}. <br> Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+                </div>
+            {% endif %}
+        {% endwith %}
+        <h1>Sign up to the Pokemon database</h1>
+        <div class="textBox">
+            <label>
+                <input type="text" name="username" placeholder="Username..." />
+            </label>
+        </div>
+        <div class="textBox">
+            <label>
+                <input type="password" name="password" placeholder="Password..." />
+            </label>
+        </div>
+            <input type="submit" value="Sign up" class="loginBtn" />
+    </form>
+</body>
+</html>

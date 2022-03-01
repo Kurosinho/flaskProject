@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Pokemon Database homepage</title>
+<link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+    <div class="welcome">
+        <h1>Welcome!</h1>
+        <h2>Do you want to see the Pokemon?</h2>
+        <a href="pokemonList">Yes</a>
+        <form method="post" action="@{/}">
+            <input class="loginBtn" type="submit" value="Yes"/>
+        </form>
+        <form method="post" action="@{/logout}">
+            <input class="loginBtn" type="submit" value="No, logout"/>
+        </form>
+    </div>
+</body>
+</html>
