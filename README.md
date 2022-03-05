@@ -6,6 +6,9 @@ will be secured with a KDC. The app and KDC will be run from seperate Docker con
 
 ### **TODO:** 
 - Create an API for Pokemon management
-- Create seperate views for user and admin permissions
+- Add front-end support for the API
+- Create an API for Users, Roles
+- Make sure that it works with DB relations
+- Create separate views for user and admin permissions
 - Add KDC support
 - Containerize the whole thing
