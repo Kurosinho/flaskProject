@@ -41,3 +41,9 @@ def get_all_pokemon():
     result = pokemons_schema.dump(all_pokemon)
 
     return jsonify(result)
+
+
+@main.route('/get_pokemon/<id>', methods=['GET'])
+def get_pokemon(id):
+    pokemon = Pokemon.query.get(id)
+    return pokemon_schema.jsonify(pokemon)
