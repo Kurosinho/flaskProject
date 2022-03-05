@@ -21,5 +21,8 @@ class PokemonSchema(ma.SQLAlchemySchema):
     owner = ma.auto_field()
 
 
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
+
 pokemon_schema = PokemonSchema()
 pokemons_schema = PokemonSchema(many=True)

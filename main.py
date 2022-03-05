@@ -46,4 +46,14 @@ def get_all_pokemon():
 @main.route('/get_pokemon/<id>', methods=['GET'])
 def get_pokemon(id):
     pokemon = Pokemon.query.get(id)
+
     return pokemon_schema.jsonify(pokemon)
+
+
+@main.route('/remove_pokemon/<id>', methods=['DELETE'])
+def remove_pokemon(id):
+    pokemon = Pokemon.query.get_or_404(id)
+    db.session.delete(pokemon)
+    db.session.commit()
+
+    return 'Successfully removed a pokemon', 204
