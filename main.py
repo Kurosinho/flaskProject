@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, render_template, request, jsonify
 from flask_login import current_user
 from flask_user import roles_accepted
@@ -17,7 +19,8 @@ def index():  # put application's code here
 @main.route('/profile')
 @roles_accepted('admin', 'user')
 def profile():
-    return render_template('profile.html', name=current_user.username)
+    pokemons = get_all_pokemon()
+    return render_template('profile.html', name=current_user.username, pokemons=pokemons)
 
 
 @main.route('/add_pokemon', methods=['POST'])
@@ -39,8 +42,9 @@ def add_pokemon():
 def get_all_pokemon():
     all_pokemon = Pokemon.query.all()
     result = pokemons_schema.dump(all_pokemon)
+    pokemons = json.dumps(result)
 
-    return jsonify(result)
+    return pokemons
 
 
 @main.route('/get_pokemon/<id>', methods=['GET'])

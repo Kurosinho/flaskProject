@@ -9,6 +9,23 @@
     <div class="welcome">
         <h1>Welcome!</h1>
         <h2>{{ name }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pokemon in pokemons %}
+                <tr>
+                    <td>{{ pokemon.name }}</td>
+                    <td>{{ pokemon.owner }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
         <a href="/logout" class="welcomeBtn">Logout</a>
     </div>
 </body>
