@@ -17,10 +17,10 @@
                 </tr>
             </thead>
             <tbody>
-            {% for pokemon in pokemons %}
+            {% for name, owner in pokemons.items() %}
                 <tr>
-                    <td>{{ pokemon.name }}</td>
-                    <td>{{ pokemon.owner }}</td>
+                    <td>{{ pokemon.name|e }}</td>
+                    <td>{{ pokemon.owner|e }}</td>
                 </tr>
             {% endfor %}
             </tbody>

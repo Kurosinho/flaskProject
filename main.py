@@ -42,7 +42,7 @@ def add_pokemon():
 def get_all_pokemon():
     all_pokemon = Pokemon.query.all()
     result = pokemons_schema.dump(all_pokemon)
-    pokemons = json.dumps(result)
+    pokemons = jsonify(result)
 
     return pokemons
 
