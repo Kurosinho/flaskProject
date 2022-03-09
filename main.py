@@ -41,9 +41,9 @@ def add_pokemon():
 @main.route('/get_pokemon', methods=['GET'])
 def get_all_pokemon():
     all_pokemon = Pokemon.query.all()
-    result = pokemons_schema.dump(all_pokemon)
-    pokemons = jsonify(result)
-
+    pokemons = pokemons_schema.dump(all_pokemon)
+    # pokemons = json.loads(result)
+    # pokemons = json.loads(jsonified)
     return pokemons
 
 

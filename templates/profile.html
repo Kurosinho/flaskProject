@@ -5,27 +5,26 @@
     <title>Your profile</title>
     <link rel="stylesheet" href="/static/css/main.css" />
 </head>
-<body>
-    <div class="welcome">
+<body onload="fetchPokemon()">
+    <!-- <script src="main.js"></script> -->
+    <div class="dataForm">
         <h1>Welcome!</h1>
         <h2>{{ name }}</h2>
-        <table>
-            <thead>
+        <table id="allPokemon">
+            <tr>
+                <th>Name</th>
+                <th>Owner</th>
+            </tr>
+            {% for pokemon in pokemons %}
+                <a class="pokemons" href="{{ url_for('main.get_all_pokemon') }}">
                 <tr>
-                    <th>Name</th>
-                    <th>Owner</th>
+                    <td>{{ pokemon["name"] }}</td>
+                    <td>{{ pokemon["owner"] }}</td>
                 </tr>
-            </thead>
-            <tbody>
-            {% for name, owner in pokemons.items() %}
-                <tr>
-                    <td>{{ pokemon.name|e }}</td>
-                    <td>{{ pokemon.owner|e }}</td>
-                </tr>
+                </a>
             {% endfor %}
-            </tbody>
-
         </table>
+    <br>
         <a href="/logout" class="welcomeBtn">Logout</a>
     </div>
 </body>
