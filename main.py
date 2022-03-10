@@ -23,6 +23,11 @@ def profile():
     return render_template('profile.html', name=current_user.username, pokemons=pokemons)
 
 
+@main.route('/add_pokemon', methods=['GET'])
+def get_add_pokemon():
+    return render_template('new_pokemon.html')
+
+
 @main.route('/add_pokemon', methods=['POST'])
 def add_pokemon():
     name = request.json['name']
@@ -39,11 +44,20 @@ def add_pokemon():
 
 
 @main.route('/get_pokemon', methods=['GET'])
+@roles_accepted('admin')
 def get_all_pokemon():
     all_pokemon = Pokemon.query.all()
     pokemons = pokemons_schema.dump(all_pokemon)
     # pokemons = json.loads(result)
     # pokemons = json.loads(jsonified)
+    return pokemons
+
+
+@main.route('/get_pokemon/<owner>', methods=['GET'])
+def get_pokemon_by_owner(owner):
+    owners_pokemon = Pokemon.query.get(owner)
+    pokemons = pokemons_schema.dump(owners_pokemon)
+
     return pokemons
 
 

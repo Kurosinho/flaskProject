@@ -5,8 +5,7 @@
     <title>Your profile</title>
     <link rel="stylesheet" href="/static/css/main.css" />
 </head>
-<body onload="fetchPokemon()">
-    <!-- <script src="main.js"></script> -->
+<body>
     <div class="dataForm">
         <h1>Welcome!</h1>
         <h2>{{ name }}</h2>
@@ -14,18 +13,21 @@
             <tr>
                 <th>Name</th>
                 <th>Owner</th>
+                <th>Delete</th>
             </tr>
             {% for pokemon in pokemons %}
                 <a class="pokemons" href="{{ url_for('main.get_all_pokemon') }}">
                 <tr>
                     <td>{{ pokemon["name"] }}</td>
                     <td>{{ pokemon["owner"] }}</td>
+                    <td><a href="/remove_pokemon/ + {{ pokemon["id"] }}" method="post">Delete</a></td>
                 </tr>
                 </a>
             {% endfor %}
         </table>
     <br>
-        <a href="/logout" class="welcomeBtn">Logout</a>
+        <a href="/logout" class="loginBtn">Logout</a>
+        <a href="/add_pokemon" class="loginBtn">Add a new Pokemon</a>
     </div>
 </body>
 </html>

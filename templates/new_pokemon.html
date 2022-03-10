@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+    <form class="loginForm">
+    <script src="/static/new_pokemon.js"></script>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="error_flash">
+                {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <h1>Add a new Pokemon</h1>
+        <div class="textBox">
+            <label>
+                <input type="text" name="name" placeholder="Name..." />
+            </label>
+        </div>
+        <div class="textBox">
+            <label>
+                <input type="text" name="owner" placeholder="Owner..." />
+            </label>
+        </div>
+            <input type="submit" value="Add" class="loginBtn" />
+        <a href="/profile" class="loginBtn">Go back</a>
+    </form>
+</body>
+</html>
