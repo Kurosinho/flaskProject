@@ -13,14 +13,16 @@
             <tr>
                 <th>Name</th>
                 <th>Owner</th>
-                <th>Delete</th>
+                <th class="th_button">Delete</th>
             </tr>
             {% for pokemon in pokemons %}
                 <a class="pokemons" href="{{ url_for('main.get_all_pokemon') }}">
                 <tr>
                     <td>{{ pokemon["name"] }}</td>
                     <td>{{ pokemon["owner"] }}</td>
-                    <td><a href="/remove_pokemon/ + {{ pokemon["id"] }}" method="post">Delete</a></td>
+                    <form action="{{ url_for('main.remove_pokemon', id=pokemon["id"])}}" method="post">
+                    <td class="td_button"><input type="submit" class="deleteBtn" value="Delete"></td>
+                    </form>
                 </tr>
                 </a>
             {% endfor %}

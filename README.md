@@ -12,3 +12,4 @@ will be secured with a KDC. The app and KDC will be run from seperate Docker con
 - Create separate views for user and admin permissions
 - Add KDC support
 - Containerize the whole thing
+

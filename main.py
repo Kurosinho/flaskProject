@@ -1,6 +1,4 @@
-import json
-
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user
 from flask_user import roles_accepted
 
@@ -48,9 +46,17 @@ def add_pokemon():
 def get_all_pokemon():
     all_pokemon = Pokemon.query.all()
     pokemons = pokemons_schema.dump(all_pokemon)
-    # pokemons = json.loads(result)
-    # pokemons = json.loads(jsonified)
+
     return pokemons
+
+
+@main.route('/pokemon/<username>', methods=['GET'])
+@roles_accepted('admin', 'user')
+def get_pokemon_by_user(username):
+    users_pokemon = Pokemon.query.get(username)
+    users_pokemons = pokemons_schema.dump(users_pokemon)
+
+    return users_pokemons
 
 
 @main.route('/get_pokemon/<owner>', methods=['GET'])
@@ -68,10 +74,10 @@ def get_pokemon(id):
     return pokemon_schema.jsonify(pokemon)
 
 
-@main.route('/remove_pokemon/<id>', methods=['DELETE'])
+@main.route('/remove_pokemon/<id>', methods=['POST'])
 def remove_pokemon(id):
     pokemon = Pokemon.query.get_or_404(id)
     db.session.delete(pokemon)
     db.session.commit()
 
-    return 'Successfully removed a pokemon', 204
+    return redirect(url_for('main.profile'))
